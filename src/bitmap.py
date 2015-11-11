@@ -41,6 +41,13 @@ class BitMap(object):
         """
         self.bitmap[pos / 8] |= self.BITMASK[pos % 8]
 
+    def set_range(self, lst):
+        """
+        Set the value of bits@all positions in lst
+        """
+        for bit in lst:
+            self.set(bit)
+            
     def reset(self, pos):
         """
         Reset the value of bit@pos to 0
@@ -71,6 +78,15 @@ class BitMap(object):
         """
         return (self.bitmap[pos / 8] & self.BITMASK[pos % 8]) != 0
 
+    def test_range(self, lst):
+        """
+        Test a range of bit values
+        """
+        ret = False
+        for i in lst:
+            ret = self.test(i)
+        return ret
+    
     def any(self):
         """
         Test if any bit is set
